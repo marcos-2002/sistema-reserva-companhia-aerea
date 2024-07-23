@@ -1,15 +1,26 @@
-function VooCard({name, voo}){
+import styles from './VooCard.module.css'
+import { Link } from 'react-router-dom';
+
+function VooCard({id, origem, destino, data_partida, data_chegada, handleRemove}){
+
+    function remove(e){
+        e.preventDefault()
+        handleRemove(id)
+    }
+
     return(
-        <div>
-            <h4>{name}</h4>
-            <p><span>Voo:</span> R${voo}</p>
-            <p><span className={`${styles[category.toLowerCase()]}`}></span>{category}</p>
+        <div className={styles.vooCard}>
+            <h4>{origem} - {destino}</h4>
+            <p><span>Data da partida:</span> {data_partida}</p>
+            <p><span>Data da chegada:</span> {data_chegada}</p>
+            {/* <p><span className={`${styles[category.toLowerCase()]}`}></span>{category}</p> */}
             <div>
-                <Link to={`/project/${id}`}>
+                {/* <Link to={`/voo/${id}`}>
                     <BsPencil/> Editar
                 </Link>
+                */}
                 <button onClick={remove}>
-                    <BsFillTrashFill/> Excluir
+                    Excluir
                 </button>
             </div>
         </div>

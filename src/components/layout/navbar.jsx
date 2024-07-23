@@ -9,7 +9,7 @@ function NavBar(){
                 <Link to={`/empresas`}>
                     Empresas
                 </Link>
-                <a href="#">Voos</a>
+                <Link to={`voos`}>Voos</Link>
                 <a href="#">Passagens</a>
                 <a href="#">Sobre</a>
             </nav>

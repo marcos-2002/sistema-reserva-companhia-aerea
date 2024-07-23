@@ -2,8 +2,8 @@
   "voos": [
     {
       "id": "5881",
-      "origem": "Rio de Janeiro",
-      "destino": "São Paulo",
+      "origem": "Santa Catarina",
+      "destino": "Minas Gerais",
       "data_saida": "2024-07-22",
       "data_chegada": "2024-07-22",
       "horario_inicio": "21:25",
@@ -14,15 +14,28 @@
       "preco_vagas_economica": "1000"
     },
     {
-      "id": "65ef",
-      "origem": "Rio de Janeiro",
+      "data_chegada": "2024-07-22",
+      "data_saida": "2024-07-22",
       "destino": "São Paulo",
-      "data_saida": "2024-07-31",
-      "data_chegada": "2024-07-31",
-      "horario_inicio": "02:25",
-      "horario_chegada": "03:25",
-      "vagas_executiva": "50",
+      "horario_chegada": "22:25",
+      "horario_inicio": "21:25",
+      "id": "5991",
+      "origem": "Rio de Janeiro",
+      "preco_vagas_economica": "1000",
       "preco_vagas_executiva": "10000",
+      "vagas_economica": "500",
+      "vagas_executiva": "50"
+    },
+    {
+      "id": "79c5",
+      "origem": "Rio de Janeiro",
+      "destino": "Paraiso da Cachoeiras",
+      "data_saida": "2024-07-23",
+      "data_chegada": "2024-07-23",
+      "horario_inicio": "14:02",
+      "horario_chegada": "17:02",
+      "vagas_executiva": "100",
+      "preco_vagas_executiva": "20000",
       "vagas_economica": "500",
       "preco_vagas_economica": "1000"
     }

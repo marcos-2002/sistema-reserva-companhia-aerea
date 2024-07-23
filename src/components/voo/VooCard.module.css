@@ -1,0 +1,32 @@
+div.vooCard {
+    padding: 10px;
+    display: inline-block;
+    border: 1px solid var(--cor5);
+    margin: 10px;
+    border-radius: 3px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.301);
+}
+
+div.vooCard h4 {
+    font-size: 20px;
+    padding: 10px;
+    background-color: lightgray;
+    color: var(--cor2)
+}
+
+div.vooCard p {
+    padding-top: 10px;
+}
+
+div.vooCard button {
+    margin-top: 10px;
+    padding: 7px;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--cor5);
+}
+
+div.vooCard button:hover {
+    color: var(--cor2);
+    cursor: pointer;
+}
