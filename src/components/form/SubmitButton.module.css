@@ -1,0 +1,15 @@
+div.submit {
+    padding: 10px;
+}
+
+div.submit button {
+    padding: 7px;
+    font-size: 17px;
+    font-weight: bold;
+    color: var(--cor5);
+}
+
+div.submit button:hover {
+    color: var(--cor2);
+    cursor: pointer;
+}

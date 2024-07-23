@@ -1,0 +1,17 @@
+div.input {
+    padding: 10px;
+}
+
+div.input label {
+    font-size: 1.3em;
+    font-weight: bold;
+    padding-right: 10px;
+    color: var(--cor5)
+}
+
+div.input input {
+    border: 1px solid var(--cor4);
+    padding: 10px 5px;
+    color: var(--cor4);
+    border-radius: 3px;
+}

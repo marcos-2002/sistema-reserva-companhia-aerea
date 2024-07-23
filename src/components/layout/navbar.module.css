@@ -1,0 +1,29 @@
+header {
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+header h1 {
+    color: var(--cor5);
+}
+
+
+header nav a {
+    text-decoration: none;
+    color: var(--cor5);
+    padding: 5px 20px;
+    margin-right: 25px;
+    border-radius: 1px;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+header nav a:hover {
+    color: var(--cor3);
+    border-left: 1px solid rgba(0, 0, 0, 0.247);
+    border-right: 1px solid rgba(0, 0, 0, 0.247);
+}

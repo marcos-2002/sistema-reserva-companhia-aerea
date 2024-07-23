@@ -1,0 +1,30 @@
+{
+  "voos": [
+    {
+      "id": "5881",
+      "origem": "Rio de Janeiro",
+      "destino": "São Paulo",
+      "data_saida": "2024-07-22",
+      "data_chegada": "2024-07-22",
+      "horario_inicio": "21:25",
+      "horario_chegada": "22:25",
+      "vagas_executiva": "50",
+      "preco_vagas_executiva": "10000",
+      "vagas_economica": "500",
+      "preco_vagas_economica": "1000"
+    },
+    {
+      "id": "65ef",
+      "origem": "Rio de Janeiro",
+      "destino": "São Paulo",
+      "data_saida": "2024-07-31",
+      "data_chegada": "2024-07-31",
+      "horario_inicio": "02:25",
+      "horario_chegada": "03:25",
+      "vagas_executiva": "50",
+      "preco_vagas_executiva": "10000",
+      "vagas_economica": "500",
+      "preco_vagas_economica": "1000"
+    }
+  ]
+}
