@@ -39,5 +39,25 @@
       "vagas_economica": "500",
       "preco_vagas_economica": "1000"
     }
+  ],
+  "clientes": [
+    {
+      "id": "c36c",
+      "cpf": "11111111111",
+      "nome": "miguel",
+      "dataNAscimento": "1111-11-11",
+      "genero": "M",
+      "email": "email@email.com",
+      "password": "123"
+    },
+    {
+      "id": "c10f",
+      "cpf": "22222222222",
+      "nome": "jose",
+      "dataNAscimento": "1111-11-11",
+      "genero": "M",
+      "email": "email@email.com",
+      "password": "123"
+    }
   ]
 }

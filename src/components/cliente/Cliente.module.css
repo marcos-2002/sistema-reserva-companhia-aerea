@@ -1,0 +1,18 @@
+.cadastroCliente {
+    background-color: white;
+    background: linear-gradient(to bottom, var(--cor6), var(--cor6)), url('../../img/travel-5219496_1280.jpg');
+    /* background: ; */
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 30px;
+    display: flex;
+    justify-content: right;
+}
+
+.cadastroCliente form {
+    width: 600px;
+    height: 400px;
+    background-color: white;
+    border-radius: 3px;
+}

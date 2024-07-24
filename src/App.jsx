@@ -5,6 +5,7 @@ import Voo from './components/voo/voo';
 import Footer from './components/layout/Footer';
 import Container from './components/layout/Container';
 import Voos from './components/pages/Voos';
+import Cliente from './components/cliente/Cliente';
 
 function App() {
   
@@ -16,8 +17,9 @@ function App() {
         <div>
           <Container>
             <Routes>
-                <Route path="/empresas" element={<Voo/>} />
+                <Route path="/cadastro-voo" element={<Voo/>} />
                 <Route path="/voos" element={<Voos/>} />
+                <Route path="/cadastro-cliente" element={<Cliente/>} />
             </Routes>
           </Container>
         </div>

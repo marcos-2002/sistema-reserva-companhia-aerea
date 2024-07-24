@@ -6,12 +6,12 @@ function NavBar(){
         <header>
             <h1>Empresa de aviação</h1>
             <nav>
-                <Link to={`/empresas`}>
-                    Empresas
+                <Link to={`/cadastro-voo`}>
+                    Cadastro de Voos
                 </Link>
                 <Link to={`voos`}>Voos</Link>
                 <a href="#">Passagens</a>
-                <a href="#">Sobre</a>
+                <Link to={'/cadastro-cliente'}>Cadastro de Cliente</Link>
             </nav>
         </header>      
     )
