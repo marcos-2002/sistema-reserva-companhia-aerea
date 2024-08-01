@@ -1,11 +1,11 @@
 import styles from './VooCard.module.css'
 import { Link } from 'react-router-dom';
 
-function EscolhaVooCard({id, origem, destino, data_partida, data_chegada, handleRemove}){
+function EscolhaVooCard({id, origem, destino, data_partida, data_chegada, handleSelect}){
 
     function selecionarVoo(e){
         e.preventDefault()
-        handleRemove(id)
+        // handleSelect(id)
     }
 
     return(

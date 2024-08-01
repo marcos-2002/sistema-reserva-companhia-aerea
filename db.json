@@ -38,6 +38,19 @@
       "preco_vagas_executiva": "20000",
       "vagas_economica": "500",
       "preco_vagas_economica": "1000"
+    },
+    {
+      "id": "1508",
+      "origem": "Rio de Janeiro",
+      "destino": "São Paulo",
+      "data_saida": "2024-12-31",
+      "data_chegada": "2024-12-31",
+      "horario_inicio": "11:22",
+      "horario_chegada": "14:22",
+      "vagas_executiva": "100",
+      "preco_vagas_executiva": "10000",
+      "vagas_economica": "500",
+      "preco_vagas_economica": "1000"
     }
   ],
   "clientes": [

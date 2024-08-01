@@ -13,6 +13,7 @@ import Voos from './components/pages/Voos';
 import Cliente from './components/cliente/Cliente';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { ReservaProvider } from './components/context/ReservaProvider.jsx'
 
 const router = createBrowserRouter([
   {
@@ -49,8 +50,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <VooProvider>
-      <RouterProvider  router={router} />
-    </VooProvider>
+    <ReservaProvider>
+      <VooProvider>
+        <RouterProvider  router={router} />
+      </VooProvider>
+    </ReservaProvider>
   </React.StrictMode>,
 )

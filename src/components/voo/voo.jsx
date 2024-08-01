@@ -9,7 +9,6 @@ function Voo(){
 
     function handleOnChange(e){
         setVoo({...voo, [e.target.name]: e.target.value})
-        console.log(voo)
     }
 
     function submit(e){

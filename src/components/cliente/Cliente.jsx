@@ -9,7 +9,6 @@ function Cliente() {
     
     function handleOnChange(e){
         setcliente({...cliente, [e.target.name]: e.target.value})
-        console.log(cliente)
     }
 
     function submit(e){

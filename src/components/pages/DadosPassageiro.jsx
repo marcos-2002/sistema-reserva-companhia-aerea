@@ -1,12 +1,17 @@
 import { Link } from "react-router-dom";
 import Input from "../form/Input";
 import SubmitButton from "../form/SubmitButton";
+import useReservaContext from '../hook/useReservaContext'
 
 function DadosPassageiro(){
 
     function handleOnChange(e){
         
     }
+
+    const { reserva } = useReservaContext()
+
+    console.log(reserva)
 
     return (
         <section>
@@ -33,9 +38,17 @@ function DadosPassageiro(){
                     onChange={handleOnChange}
                 />
                 <Input
-                    type='checkbox'
+                    type='number'
                     name='idade'
                     text='Digite a idade do passageiro'
+                    placeholder='Insira a idade'
+                    onChange={handleOnChange}
+                />
+
+                <Input
+                    type='checkbox'
+                    name='bagagem_extra'
+                    text='Deseja uma bagagem de 25kg (EXTRA) - 100R$'
                     placeholder='Insira a idade'
                     onChange={handleOnChange}
                 />
