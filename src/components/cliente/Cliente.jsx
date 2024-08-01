@@ -31,7 +31,7 @@ function Cliente() {
                 <Input
                     type="text"
                     name='cpf'
-                    placeholder='111.111.111-11'
+                    placeholder='Apenas os números'
                     text='Insira o seu CPF'
                     onChange = {handleOnChange}
                 />
