@@ -4,7 +4,7 @@ import App from './App.jsx'
 import './index.css'
 import VooProvider from './components/context/VooProvider.jsx'
 
-
+import Login from './components/pages/Login.jsx'
 import Home from './components/pages/Home';
 import EscolhaVoos from './components/pages/EscolhaVoos';
 import DadosPassageiro from './components/pages/DadosPassageiro';
@@ -43,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: '/cadastro-cliente',
         element: <Cliente />
+      },
+      {
+        path: '/login',
+        element:<Login />
       }
     ]
   }

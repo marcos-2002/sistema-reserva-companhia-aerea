@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import EscolhaVooCard from "../voo/EscolhaVooCard";
 import useVooContext from "../hook/useVooContext";
+import useReservaContext from "../hook/useReservaContext";
 
 function EscolhaVoos(){
 
     const [voos, setVoos] = useState({})
     const {voo} = useVooContext()
+    const {reserva, setReserva} = useReservaContext()
+    const navigate = useNavigate()
 
     useEffect(()=>{
         fetch('http://localhost:5000/voos', {
@@ -18,6 +21,11 @@ function EscolhaVoos(){
             setVoos(voosEscolhidos)
         })
     }, [])
+
+    function handleSelect(id) {
+        setReserva({...reserva, ['id_voo']: id})
+        navigate('/dados-passageiro')
+    }
 
     
 
@@ -33,7 +41,7 @@ function EscolhaVoos(){
                         data_partida={voo.data_saida}
                         data_chegada={voo.data_chegada}
                         id={voo.id}
-                        handleSelect=''
+                        handleSelect={handleSelect}
                         key={voo.id}
                 />)
             })}

@@ -1,21 +1,35 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Input from "../form/Input";
 import SubmitButton from "../form/SubmitButton";
 import useReservaContext from '../hook/useReservaContext'
+import { useState } from "react";
 
 function DadosPassageiro(){
 
+    const { reserva, setReserva } = useReservaContext()
+    const [bagagemExtra, setBagagemExtra] = useState(true)
+    const navigate = useNavigate()
+    
     function handleOnChange(e){
-        
+        setReserva({...reserva, [e.target.name]: e.target.value})
+        console.log(reserva)
     }
 
-    const { reserva } = useReservaContext()
+    function handleOnChangeBagagem(e) {
+        setBagagemExtra(()=>!bagagemExtra)
+        console.log(bagagemExtra)
+        setReserva({...reserva, [e.target.name]: bagagemExtra})
+        console.log(reserva)
+    }
 
-    console.log(reserva)
+    function submit(){
+        // TENHO QUE TERMINAR ESSA FUNÇÃO
+        // navigate('')
+    }
 
     return (
         <section>
-            <form>
+            <form onSubmit={submit}>
                 <Input
                     type='text'
                     name='cpf'
@@ -31,13 +45,6 @@ function DadosPassageiro(){
                     onChange={handleOnChange}
                 />
                 <Input
-                    type='text'
-                    name='idade'
-                    text='Digite a idade do passageiro'
-                    placeholder='Insira a idade'
-                    onChange={handleOnChange}
-                />
-                <Input
                     type='number'
                     name='idade'
                     text='Digite a idade do passageiro'
@@ -50,13 +57,10 @@ function DadosPassageiro(){
                     name='bagagem_extra'
                     text='Deseja uma bagagem de 25kg (EXTRA) - 100R$'
                     placeholder='Insira a idade'
-                    onChange={handleOnChange}
+                    onChange={handleOnChangeBagagem}
                 />
 
-
-                <Link to='/dados-passageiro'>
-                    <SubmitButton text='Continuar'/>
-                </Link>
+                <SubmitButton text='Continuar'/>
             </form>
         </section>
     )

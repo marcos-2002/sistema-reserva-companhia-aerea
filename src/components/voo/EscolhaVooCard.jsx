@@ -5,7 +5,7 @@ function EscolhaVooCard({id, origem, destino, data_partida, data_chegada, handle
 
     function selecionarVoo(e){
         e.preventDefault()
-        // handleSelect(id)
+        handleSelect(id)
     }
 
     return(
