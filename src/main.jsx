@@ -11,9 +11,11 @@ import DadosPassageiro from './components/pages/DadosPassageiro';
 import Voo from './components/voo/voo';
 import Voos from './components/pages/Voos';
 import Cliente from './components/cliente/Cliente';
+import Reservas from './components/pages/Reservas.jsx'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { ReservaProvider } from './components/context/ReservaProvider.jsx'
+import { ClienteProvider } from './components/context/ClienteProvider.jsx'
 
 const router = createBrowserRouter([
   {
@@ -21,7 +23,11 @@ const router = createBrowserRouter([
     element:<App />,
     children: [
       {
-        path:'/',
+        path: '/',
+        element:<Login />
+      },
+      {
+        path:'/home',
         element: <Home />
       },
       {
@@ -45,8 +51,8 @@ const router = createBrowserRouter([
         element: <Cliente />
       },
       {
-        path: '/login',
-        element:<Login />
+        path: '/reservas',
+        element: <Reservas />
       }
     ]
   }
@@ -54,10 +60,12 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ReservaProvider>
-      <VooProvider>
-        <RouterProvider  router={router} />
-      </VooProvider>
-    </ReservaProvider>
+    <ClienteProvider>
+      <ReservaProvider>
+        <VooProvider>
+          <RouterProvider  router={router} />
+        </VooProvider>
+      </ReservaProvider>
+    </ClienteProvider>
   </React.StrictMode>,
 )

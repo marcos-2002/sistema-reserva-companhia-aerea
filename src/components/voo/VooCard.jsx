@@ -1,5 +1,4 @@
 import styles from './VooCard.module.css'
-import { Link } from 'react-router-dom';
 
 function VooCard({id, origem, destino, data_partida, data_chegada, handleRemove}){
 

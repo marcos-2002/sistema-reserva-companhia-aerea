@@ -72,5 +72,43 @@
       "email": "email@email.com",
       "password": "123"
     }
+  ],
+  "reservas": [
+    {
+      "id": "567a",
+      "bagagem_extra": false,
+      "preco": 1000,
+      "status_pagamento": false,
+      "id_voo": "5991",
+      "contaCliente": "11111111111",
+      "cpf": "77777777777",
+      "nome": "Marcos",
+      "idade": "3",
+      "vaga": "economica"
+    },
+    {
+      "id": "42f9",
+      "bagagem_extra": true,
+      "preco": 10100,
+      "status_pagamento": true,
+      "id_voo": "1508",
+      "contaCliente": "11111111111",
+      "cpf": "44444444444",
+      "nome": "Miguel da Silva",
+      "idade": "19",
+      "vaga": "executiva"
+    },
+    {
+      "id": "123c",
+      "bagagem_extra": true,
+      "preco": 10100,
+      "status_pagamento": false,
+      "id_voo": "1508",
+      "contaCliente": "11111111111",
+      "cpf": "55555555555555",
+      "nome": "Jonas",
+      "idade": "34",
+      "vaga": "executiva"
+    }
   ]
 }

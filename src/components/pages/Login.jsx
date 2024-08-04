@@ -2,12 +2,14 @@ import { useEffect, useState } from "react"
 import Input from "../form/Input"
 import SubmitButton from "../form/SubmitButton"
 import { useNavigate } from "react-router-dom"
+import useClienteContext from "../hook/useClienteContext"
 
 function Login(){
 
     const [cliente, setCliente] = useState(null)
     const [clientes, setClientes] = useState(null)
     const navigate = useNavigate()
+    const {setClienteAtual} = useClienteContext()
 
     useEffect(() => {
         fetch('http://localhost:5000/clientes', {
@@ -21,14 +23,14 @@ function Login(){
 
     function handleOnChange(e){
         setCliente({...cliente, [e.target.name]: e.target.value})
-        console.log(cliente)
     }
 
     function submit(e){
         e.preventDefault()
         clientes.map((cli) => {
             if(cli.cpf === cliente.cpf && cli.password === cliente.password) {
-                navigate('/')
+                setClienteAtual(cli)
+                navigate('/home')
             }
         })
     }

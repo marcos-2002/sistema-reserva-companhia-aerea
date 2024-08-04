@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Input from "../form/Input";
 import SubmitButton from "../form/SubmitButton";
@@ -14,6 +14,7 @@ function Home(){
         setViagem({...viagem, [e.target.name]: e.target.value})
         setVoo({...voo, [e.target.name]: e.target.value})
     }
+
 
     return (
         <section>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import EscolhaVooCard from "../voo/EscolhaVooCard";
+import EscolhaVooCard from "../layout/EscolhaVooCard";
 import useVooContext from "../hook/useVooContext";
 import useReservaContext from "../hook/useReservaContext";
 
