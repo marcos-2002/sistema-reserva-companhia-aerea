@@ -34,4 +34,8 @@ public class VooService {
 
     }
 
+    public List<Voo> searchFlights(String origin, String destination) {
+        return repository.findByOrigemAndDestino(origin, destination);
+    }
+
 }

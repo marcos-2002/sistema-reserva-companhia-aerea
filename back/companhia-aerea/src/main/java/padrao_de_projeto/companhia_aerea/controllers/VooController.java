@@ -5,6 +5,7 @@ import padrao_de_projeto.companhia_aerea.domain.Voo.VooRequestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
+import padrao_de_projeto.companhia_aerea.infra.security.TokenService;
 import padrao_de_projeto.companhia_aerea.service.VooService;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class VooController {
 
     @Autowired
     private VooService vooService;
+
 
     @GetMapping
     public ResponseEntity<List<Voo>> findAll() {
@@ -28,4 +30,12 @@ public class VooController {
         Voo newVoo = this.vooService.createVoo(body);
         return ResponseEntity.ok(newVoo);
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Voo>> searchFlights(@RequestParam String origin, @RequestParam String destination) {
+        List<Voo> voos = this.vooService.searchFlights(origin, destination);
+        return ResponseEntity.ok(voos);
+    }
+
+
 }
