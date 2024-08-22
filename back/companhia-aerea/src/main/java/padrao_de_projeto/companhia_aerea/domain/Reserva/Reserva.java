@@ -17,10 +17,11 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Reserva {
+
     @Id
     @GeneratedValue
     private UUID id;
-    private double pesoBagagem;
+    private boolean bagagemExtra;
     private double preco;
 
     @ManyToOne

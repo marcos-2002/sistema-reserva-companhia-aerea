@@ -1,5 +1,6 @@
 package padrao_de_projeto.companhia_aerea.controllers;
 
+import org.apache.coyote.Response;
 import padrao_de_projeto.companhia_aerea.domain.Voo.Voo;
 import padrao_de_projeto.companhia_aerea.domain.Voo.VooRequestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,6 @@ public class VooController {
     @Autowired
     private VooService vooService;
 
-
     @GetMapping
     public ResponseEntity<List<Voo>> findAll() {
         List<Voo> list = vooService.findAll();
@@ -26,7 +26,6 @@ public class VooController {
 
     @PostMapping
     public ResponseEntity<Voo> postVoo(@RequestBody VooRequestDTO body){
-
         Voo newVoo = this.vooService.createVoo(body);
         return ResponseEntity.ok(newVoo);
     }

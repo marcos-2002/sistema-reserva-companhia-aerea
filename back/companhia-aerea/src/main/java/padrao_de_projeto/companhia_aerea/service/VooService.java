@@ -8,6 +8,7 @@ import padrao_de_projeto.companhia_aerea.repositories.VooRepository;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class VooService {
@@ -17,6 +18,10 @@ public class VooService {
 
     public List<Voo> findAll() {
         return repository.findAll();
+    }
+
+    public void save(Voo voo){
+        repository.save(voo);
     }
 
     public Voo createVoo(VooRequestDTO data) {
@@ -38,4 +43,8 @@ public class VooService {
         return repository.findByOrigemAndDestino(origin, destination);
     }
 
+    public Voo getVooById(UUID id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Voo não encontrado com o id: " + id));
+    }
 }
