@@ -5,7 +5,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /*
- * MUDAR O ALLOWED ORIGIN PARA A POSTA DO FRONTEND
+ * MUDAR O ALLOWED ORIGIN PARA A PORTA DO FRONTEND
  */
 
 @Configuration
