@@ -36,7 +36,6 @@ public class VooService {
 
         repository.save(newVoo);
         return newVoo;
-
     }
 
     public List<Voo> searchFlights(String origin, String destination) {
