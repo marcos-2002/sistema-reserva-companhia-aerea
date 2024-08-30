@@ -22,16 +22,21 @@ public class Voo {
     @Id
     @GeneratedValue
     private UUID id;
-
     private String origem;
     private String destino;
     private Date saida;
     private Date chegada;
-    private int vagas;
+    private Integer  vagas;
 
-    public Voo(VooRequestDTO data) {
-        this.origem = data.origem();
-        this.destino = data.destino();
-        this.vagas = data.vagas();
+
+    @Override
+    public String toString() {
+        return "Voo{" +
+                "origem='" + origem + '\'' +
+                ", destino='" + destino + '\'' +
+                ", saida=" + saida +
+                ", chegada=" + chegada +
+                ", vagas=" + vagas +
+                '}';
     }
 }

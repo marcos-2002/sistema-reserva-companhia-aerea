@@ -1,5 +1,7 @@
 package padrao_de_projeto.companhia_aerea.service;
 
+import jakarta.persistence.EntityNotFoundException;
+import org.modelmapper.ModelMapper;
 import padrao_de_projeto.companhia_aerea.domain.Voo.Voo;
 import padrao_de_projeto.companhia_aerea.domain.Voo.VooRequestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,17 @@ public class VooService {
     @Autowired
     private VooRepository repository;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
+
+    public void deletarVoo(UUID id) {
+        if (!repository.existsById(id)) {
+            throw new EntityNotFoundException("Voo não encontrado com id: " + id);
+        }
+        repository.deleteById(id);
+    }
+
     public List<Voo> findAll() {
         return repository.findAll();
     }
@@ -27,8 +40,8 @@ public class VooService {
     public Voo createVoo(VooRequestDTO data) {
         Voo newVoo = new Voo();
 
-        newVoo.setSaida(new Date(data.saida()));
-        newVoo.setChegada(new Date(data.chegada()));
+        newVoo.setSaida(data.saida());
+        newVoo.setChegada(data.chegada());
 
         newVoo.setVagas(data.vagas());
         newVoo.setOrigem(data.origem());
@@ -45,5 +58,29 @@ public class VooService {
     public Voo getVooById(UUID id) {
         return repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Voo não encontrado com o id: " + id));
+    }
+
+    public Voo atualizarVoo(UUID id, VooRequestDTO vooRequestDTO) {
+        Voo vooExistente = repository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Reserva não encontrada com id: " + id));
+
+        if (vooRequestDTO.origem() != null) {
+            vooExistente.setOrigem(vooRequestDTO.origem());
+        }
+        if (vooRequestDTO.destino() != null) {
+            vooExistente.setDestino(vooRequestDTO.destino());
+        }
+        if (vooRequestDTO.saida() != null) {
+            vooExistente.setSaida(vooRequestDTO.saida());
+        }
+        if (vooRequestDTO.chegada() != null) {
+            vooExistente.setChegada(vooRequestDTO.chegada());
+        }
+        if (vooRequestDTO.vagas() != null) {
+            vooExistente.setVagas(vooRequestDTO.vagas());
+        }
+
+        // Salva a reserva atualizada no banco de dados
+        return repository.save(vooExistente);
     }
 }

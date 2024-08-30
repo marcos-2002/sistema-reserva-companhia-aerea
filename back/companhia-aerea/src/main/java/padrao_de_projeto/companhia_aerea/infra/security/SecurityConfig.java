@@ -42,6 +42,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/voos").permitAll()
                         .requestMatchers(HttpMethod.GET, "/voos/search").permitAll()
                         .requestMatchers(HttpMethod.POST, "/voos").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/voos/{id}").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/voos/{id}").permitAll()
                         .anyRequest().authenticated()
 
                 )

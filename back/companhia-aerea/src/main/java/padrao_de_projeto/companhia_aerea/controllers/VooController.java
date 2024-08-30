@@ -10,6 +10,7 @@ import padrao_de_projeto.companhia_aerea.infra.security.TokenService;
 import padrao_de_projeto.companhia_aerea.service.VooService;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/voos")
@@ -31,9 +32,20 @@ public class VooController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<Voo>> searchFlights(@RequestParam String origin, @RequestParam String destination) {
+    public ResponseEntity<List<Voo>> procurarVoo(@RequestParam String origin, @RequestParam String destination) {
         List<Voo> voos = this.vooService.searchFlights(origin, destination);
         return ResponseEntity.ok(voos);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteVoo(@PathVariable UUID id) {
+        this.vooService.deletarVoo(id);
+        return ResponseEntity.noContent().build();
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<Voo> atualizarVoo(@PathVariable UUID id, @RequestBody VooRequestDTO vooAtualizado) {
+        Voo voo = vooService.atualizarVoo(id, vooAtualizado);
+        return ResponseEntity.ok(voo); // Retorna 200 OK com o voo atualizada
     }
 
 
