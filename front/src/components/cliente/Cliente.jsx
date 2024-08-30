@@ -14,14 +14,14 @@ function Cliente() {
     function submit(e){
         e.preventDefault()
 
-        fetch('http://localhost:5000/clientes', {
+        fetch('http://localhost:8080/auth/register', {
             method:"POST",
             headers:{'Content-Type': 'application/json'},
             body: JSON.stringify(cliente)
         }).then((data)=>data.json())
         .then((data)=>console.log("Dados de cliente cadastrado com sucesso \n" + data))
         .catch((err)=>console.log("Erro no cadastro de cliente ---- " + err))
-
+        console.log(JSON.stringify(cliente))
     }
 
     return (
@@ -43,17 +43,17 @@ function Cliente() {
                 />
                 <Input
                     type='date'
-                    name='dataNAscimento'
+                    name='dataNascimento'
                     text='Insira o sea data de nascimento'
                     onChange = {handleOnChange}
                 />
-                <Input
+                {/* <Input
                     type='text'
                     name='genero'
                     placeholder='M ou F'
                     text='Insira a sua data de nascimento'
                     onChange = {handleOnChange}
-                />
+                /> */}
                 <Input
                     type='email'
                     name='email'
@@ -63,7 +63,7 @@ function Cliente() {
                 />
                 <Input
                     type='password'
-                    name='password'
+                    name='senha'
                     text='Insira a sua senha'
                     onChange = {handleOnChange}
                 />
