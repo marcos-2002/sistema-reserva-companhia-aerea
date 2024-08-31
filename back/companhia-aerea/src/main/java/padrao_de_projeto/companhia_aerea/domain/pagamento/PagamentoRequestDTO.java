@@ -10,4 +10,5 @@ public record PagamentoRequestDTO(double valor,
                                   String numeroCartao,
                                   String nomeTitular,
                                   String cvv) {
+
 }

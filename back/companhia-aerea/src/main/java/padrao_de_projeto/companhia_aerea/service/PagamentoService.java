@@ -13,6 +13,8 @@ import padrao_de_projeto.companhia_aerea.repositories.PagamentoBoletoRepository;
 import padrao_de_projeto.companhia_aerea.repositories.PagamentoCartaoRepository;
 
 import java.util.Map;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class PagamentoService {
@@ -40,5 +42,20 @@ public class PagamentoService {
             throw new IllegalArgumentException("Tipo de pagamento desconhecido");
         }
         strategy.processarPagamento(body);
+    }
+
+    public Optional<Pagamento> getPagamentoRserva(UUID idReserva) {
+
+        Optional<PagamentoBoleto> pagamentoBoleto = boletoRepository.findByReserva_Id(idReserva);
+        if (pagamentoBoleto.isPresent()) {
+            return Optional.of(pagamentoBoleto.get());
+        }
+        Optional<PagamentoCartao> pagamentoCartao = cartaoRepository.findByReserva_Id(idReserva);
+        if (pagamentoCartao.isPresent()) {
+            return Optional.of(pagamentoCartao.get());
+        }
+        else{
+            throw new RuntimeException("Não foi possível encontrar o pagamento referente a reserva: " + idReserva);
+        }
     }
 }
