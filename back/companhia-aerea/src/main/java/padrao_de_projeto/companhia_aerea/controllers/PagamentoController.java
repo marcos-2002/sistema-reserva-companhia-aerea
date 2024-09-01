@@ -30,12 +30,12 @@ public class PagamentoController {
     }
 
     @PostMapping("/processar")
-    public ResponseEntity processarPagamento(@RequestBody PagamentoRequestWrapper requestWrapper) {
+    public ResponseEntity<?> processarPagamento(@RequestBody PagamentoRequestWrapper requestWrapper) {
         String tipo = requestWrapper.tipo();
         PagamentoRequestDTO data = requestWrapper.dados();
         try {
-            pagamentoService.processarPagamento(data, tipo);
-            return ResponseEntity.ok().build();
+            Pagamento pg = pagamentoService.processarPagamento(data, tipo);
+            return ResponseEntity.ok(pg);
         }catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

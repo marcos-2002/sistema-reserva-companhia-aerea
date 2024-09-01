@@ -26,17 +26,8 @@ public class Voo {
     private String destino;
     private Date saida;
     private Date chegada;
-    private Integer  vagas;
-
-
-    @Override
-    public String toString() {
-        return "Voo{" +
-                "origem='" + origem + '\'' +
-                ", destino='" + destino + '\'' +
-                ", saida=" + saida +
-                ", chegada=" + chegada +
-                ", vagas=" + vagas +
-                '}';
-    }
+    private Integer vagasNormal;
+    private Integer vagasExecutiva;
+    private double preçoNormal;
+    private double preçoExecutiva;
 }

@@ -8,6 +8,7 @@ import padrao_de_projeto.companhia_aerea.domain.Cliente.Cliente;
 import padrao_de_projeto.companhia_aerea.domain.Reserva.Reserva;
 import padrao_de_projeto.companhia_aerea.domain.Reserva.ReservaPagamentoDTO;
 import padrao_de_projeto.companhia_aerea.domain.Reserva.ReservaRequestDTO;
+import padrao_de_projeto.companhia_aerea.domain.pagamento.Pagamento;
 import padrao_de_projeto.companhia_aerea.domain.pagamento.PagamentoRequestWrapper;
 import padrao_de_projeto.companhia_aerea.facade.ReservaFacade;
 import padrao_de_projeto.companhia_aerea.infra.security.TokenService;
@@ -47,8 +48,8 @@ public class ReservaController {
         ReservaRequestDTO reservaRequestDTO = body.reservaRequestDTO();
         PagamentoRequestWrapper pagamentoRequestWrapper = body.pagamentoRequestWrapper();
         try {
-            Reserva reserva = reservaFacade.criarReservaComPagamento(reservaRequestDTO, cliente, pagamentoRequestWrapper);
-            return ResponseEntity.ok(reserva);
+            Pagamento pg = reservaFacade.criarReservaComPagamento(reservaRequestDTO, cliente, pagamentoRequestWrapper);
+            return ResponseEntity.ok(pg);
         }catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

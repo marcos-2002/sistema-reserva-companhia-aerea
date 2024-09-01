@@ -5,5 +5,5 @@ import padrao_de_projeto.companhia_aerea.domain.pagamento.PagamentoRequestDTO;
 
 import java.util.UUID;
 
-public record ReservaRequestDTO(boolean bagagemExtra, double preco, UUID voo) {
+public record ReservaRequestDTO(boolean bagagemExtra,String tipo,UUID voo) {
 }

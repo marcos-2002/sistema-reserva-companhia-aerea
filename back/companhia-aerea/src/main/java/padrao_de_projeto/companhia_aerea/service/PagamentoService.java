@@ -36,12 +36,13 @@ public class PagamentoService {
         );
     }
 
-    public void processarPagamento(PagamentoRequestDTO body, String tipo) {
+    public Pagamento processarPagamento(PagamentoRequestDTO body, String tipo) {
         PagamentoStrategy strategy = strategies.get(tipo.toLowerCase());
         if (strategy == null) {
             throw new IllegalArgumentException("Tipo de pagamento desconhecido");
         }
-        strategy.processarPagamento(body);
+        Pagamento pg = strategy.processarPagamento(body);
+        return pg;
     }
 
     public Optional<Pagamento> getPagamentoRserva(UUID idReserva) {

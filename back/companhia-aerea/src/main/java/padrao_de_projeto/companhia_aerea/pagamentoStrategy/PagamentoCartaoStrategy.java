@@ -22,17 +22,18 @@ public class PagamentoCartaoStrategy implements PagamentoStrategy {
     private ReservaRepository reservaRepository;
 
     @Override
-    public void processarPagamento(PagamentoRequestDTO body) {
+    public Pagamento processarPagamento(PagamentoRequestDTO body) {
         PagamentoCartao pg = new PagamentoCartao();
 
         pg.setCvv(body.cvv());
         pg.setNumeroCartao(body.numeroCartao());
-        pg.setValor(body.valor());
         pg.setNomeTitular(body.nomeTitular());
 
         Reserva reserva = reservaRepository.findById(body.reserva()).orElseThrow(() -> new RuntimeException("Reserva não encontrada"));
+        pg.setValor(reserva.getPreco());
         pg.setReserva(reserva);
 
         pagamentoCartaoRepository.save(pg);
+        return pg;
     }
 }

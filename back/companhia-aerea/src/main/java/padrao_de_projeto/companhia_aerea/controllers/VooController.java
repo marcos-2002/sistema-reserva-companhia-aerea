@@ -33,9 +33,7 @@ public class VooController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<Voo>> procurarVoo(@RequestBody VooOrigemDestinoDTo data) {
-        String origin = data.origem();
-        String destination = data.destino();
+    public ResponseEntity<List<Voo>> procurarVoo(@RequestParam String origin, @RequestParam String destination) {
         List<Voo> voos = this.vooService.searchFlights(origin, destination);
         return ResponseEntity.ok(voos);
     }

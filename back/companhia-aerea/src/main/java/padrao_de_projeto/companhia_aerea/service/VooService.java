@@ -43,7 +43,12 @@ public class VooService {
         newVoo.setSaida(data.saida());
         newVoo.setChegada(data.chegada());
 
-        newVoo.setVagas(data.vagas());
+        newVoo.setVagasNormal(data.vagasExecutiva());
+        newVoo.setVagasExecutiva(data.vagasExecutiva());
+
+        newVoo.setPreçoExecutiva(data.preçoExecutiva());
+        newVoo.setPreçoNormal(data.preçoExecutiva());
+
         newVoo.setOrigem(data.origem());
         newVoo.setDestino(data.destino());
 
@@ -76,8 +81,17 @@ public class VooService {
         if (vooRequestDTO.chegada() != null) {
             vooExistente.setChegada(vooRequestDTO.chegada());
         }
-        if (vooRequestDTO.vagas() != null) {
-            vooExistente.setVagas(vooRequestDTO.vagas());
+        if (vooRequestDTO.vagasExecutiva() != null) {
+            vooExistente.setVagasExecutiva(vooRequestDTO.vagasExecutiva());
+        }
+        if (vooRequestDTO.vagasNormal() != null) {
+            vooExistente.setVagasNormal(vooRequestDTO.vagasNormal());
+        }
+        if (vooRequestDTO.preçoNormal() != null) {
+            vooExistente.setPreçoNormal(vooRequestDTO.preçoNormal());
+        }
+        if (vooRequestDTO.preçoExecutiva() != null) {
+            vooExistente.setPreçoExecutiva(vooRequestDTO.preçoExecutiva());
         }
 
         // Salva a reserva atualizada no banco de dados

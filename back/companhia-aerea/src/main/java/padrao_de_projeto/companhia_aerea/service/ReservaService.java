@@ -28,21 +28,47 @@ public class ReservaService {
 
     public Reserva createReservation(ReservaRequestDTO body, Cliente cliente) {
         Voo voo = vooService.getVooById(body.voo());
+        String tipo = body.tipo().toLowerCase();
 
-        if(voo.getVagas() <= 0 ) {
-            throw new RuntimeException("Não há vagas disponíveis para este voo.");
+        if (tipo.equals("normal")) {
+            if(voo.getVagasNormal() <= 0) {
+                throw new RuntimeException("Não há vagas disponíveis para este voo.");
+            } else {
+                Reserva reserva = new Reserva();
+                reserva.setCliente(cliente);
+                reserva.setVoo(voo);
+                reserva.setBagagemExtra(body.bagagemExtra());
+                if(body.bagagemExtra()) {
+                    reserva.setPreco(voo.getPreçoNormal() * 1.10);
+                } else {
+                    reserva.setPreco(voo.getPreçoNormal());
+                }
+                repository.save(reserva);
+                voo.setVagasNormal(voo.getVagasNormal() - 1);
+                vooService.save(voo);
+                return reserva;
+            }
         }
 
-        Reserva reserva = new Reserva();
-        reserva.setCliente(cliente);
-        reserva.setVoo(voo);
-        reserva.setBagagemExtra(body.bagagemExtra());
-        reserva.setPreco(body.preco());
-
-        repository.save(reserva);
-
-        voo.setVagas(voo.getVagas()-1);
-        vooService.save(voo);
-        return reserva;
+        if (tipo.equals("executiva")) {
+            if(voo.getVagasExecutiva() <= 0) {
+                throw new RuntimeException("Não há vagas disponíveis para este voo.");
+        } else {
+                Reserva reserva = new Reserva();
+                reserva.setCliente(cliente);
+                reserva.setVoo(voo);
+                reserva.setBagagemExtra(body.bagagemExtra());
+                if (body.bagagemExtra()) {
+                    reserva.setPreco(voo.getPreçoExecutiva() * 1.10);
+                } else {
+                    reserva.setPreco(voo.getPreçoExecutiva());
+                }
+                repository.save(reserva);
+                voo.setVagasExecutiva(voo.getVagasExecutiva() - 1);
+                vooService.save(voo);
+                return reserva;
+            }
     }
+        return null;
+}
 }

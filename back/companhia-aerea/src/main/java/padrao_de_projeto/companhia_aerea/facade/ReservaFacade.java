@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import padrao_de_projeto.companhia_aerea.domain.Cliente.Cliente;
 import padrao_de_projeto.companhia_aerea.domain.Reserva.Reserva;
 import padrao_de_projeto.companhia_aerea.domain.Reserva.ReservaRequestDTO;
+import padrao_de_projeto.companhia_aerea.domain.pagamento.Pagamento;
 import padrao_de_projeto.companhia_aerea.domain.pagamento.PagamentoRequestDTO;
 import padrao_de_projeto.companhia_aerea.domain.pagamento.PagamentoRequestWrapper;
 import padrao_de_projeto.companhia_aerea.service.PagamentoService;
@@ -22,7 +23,7 @@ public class ReservaFacade {
     private PagamentoService pagamentoService;
 
     @Transactional
-    public Reserva criarReservaComPagamento(ReservaRequestDTO reservaDTO, Cliente cliente, PagamentoRequestWrapper requestWrapper) {
+    public Pagamento criarReservaComPagamento(ReservaRequestDTO reservaDTO, Cliente cliente, PagamentoRequestWrapper requestWrapper) {
 
         // 1. Criar a reserva
         Reserva reserva = reservaService.createReservation(reservaDTO, cliente);
@@ -32,15 +33,14 @@ public class ReservaFacade {
         PagamentoRequestDTO data = requestWrapper.dados();
 
         PagamentoRequestDTO novoPagamentoRequest = new PagamentoRequestDTO(
-                data.valor(),
                 reserva.getId(), // Novo valor para 'reserva'
                 data.codigoBoleto(),
                 data.numeroCartao(),
                 data.nomeTitular(),
                 data.cvv()
         );
-        pagamentoService.processarPagamento(novoPagamentoRequest, tipo);
-        return reserva;
+        Pagamento pg = pagamentoService.processarPagamento(novoPagamentoRequest, tipo);
+        return pg;
 
     }
 }
