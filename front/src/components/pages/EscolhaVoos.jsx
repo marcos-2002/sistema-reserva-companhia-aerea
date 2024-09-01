@@ -12,13 +12,12 @@ function EscolhaVoos(){
     const navigate = useNavigate()
 
     useEffect(()=>{
-        fetch('http://localhost:8080/voos/search', {
+        fetch(`http://localhost:8080/voos/search?origin=${voo.origem}&destination=${voo.destino}`, {
             method: "GET",
             headers: {'Content-Type': 'application/json'}
         }).then((data)=>data.json())
         .then((data)=> {
-            let voosEscolhidos = data.filter((voos) => voos.origem === voo.origem && voos.destino === voo.destino)
-            setVoos(voosEscolhidos)
+            setVoos(data)
         })
     }, [])
 
@@ -38,8 +37,8 @@ function EscolhaVoos(){
                     <EscolhaVooCard 
                         origem={voo.origem}
                         destino={voo.destino}
-                        data_partida={voo.data_saida}
-                        data_chegada={voo.data_chegada}
+                        data_partida={voo.saida}
+                        data_chegada={voo.chegada}
                         id={voo.id}
                         handleSelect={handleSelect}
                         key={voo.id}

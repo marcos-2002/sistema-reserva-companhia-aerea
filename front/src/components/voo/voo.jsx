@@ -88,6 +88,7 @@ function Voo(){
                 setVoo({...voo, [e.target.name]: e.target.value})
             }
         }
+        console.log(voo)
     }
 
 
@@ -168,8 +169,29 @@ function Voo(){
                 />
                 <Input 
                     type="number"
-                    name="vagas"
-                    text="Insira a quantidade de vagas do avião"
+                    name="vagasNormal"
+                    text="Insira a quantidade de vagas da classe econômica"
+                    placeholder="Insira a quantidade"
+                    onChange={handleOnChange}
+                />
+                <Input 
+                    type="number"
+                    name="vagasExecutiva"
+                    text="Insira a quantidade de vagas da classe executiva"
+                    placeholder="Insira a quantidade"
+                    onChange={handleOnChange}
+                />
+                <Input 
+                    type="number"
+                    name="preçoNormal"
+                    text="Insira o preço da passagem da classe econômica"
+                    placeholder="Insira a quantidade"
+                    onChange={handleOnChange}
+                />
+                <Input 
+                    type="number"
+                    name="preçoExecutiva"
+                    text="Insira o preço da passagem da classe executiva"
                     placeholder="Insira a quantidade"
                     onChange={handleOnChange}
                 />

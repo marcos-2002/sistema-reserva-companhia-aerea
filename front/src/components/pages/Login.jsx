@@ -24,15 +24,24 @@ function Login(){
             body: JSON.stringify(cliente)
         })
         .then((data) => {
-            if(data.status == 200){
-                navigate('/home')
-            }
-            if(data.status == 400){
+            if(data.status == 400) {
                 setResposta('Email ou senha incorretos')
             }
-            if(data.status == 403){
+            if(data.status == 403) {
                 setResposta('Email incorreto')
             }
+            if(data.status == 200) {
+                return data
+            }
+        })
+        .then((data) => {
+            if (data !== undefined) {
+                return data.json()
+            }
+        })
+        .then((data) => {
+            localStorage.setItem('token', data.token)
+            navigate('/home')
         })
         .catch((err) => console.log('Erro para achar cliente' + err))
     }

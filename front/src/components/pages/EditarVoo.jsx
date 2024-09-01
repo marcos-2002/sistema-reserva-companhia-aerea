@@ -11,7 +11,6 @@ function EditarVoo(){
 
     const [voo, setVoo] = useState({})
     const [resp, setResp] = useState('')
-    console.log(voo)
 
     function formatDate(date, time) {
         const [year, month, day] = date.split('-');
@@ -92,15 +91,22 @@ function EditarVoo(){
                 setVoo({...voo, [e.target.name]: e.target.value})
             }
         }
+        console.log(voo)
     }
 
 
     function submit(e) {
         e.preventDefault();
-    
+        console.log(id)
+        let formattedSaida
+        let formattedChegada
         // Formatando as datas e horários no formato esperado pelo backend
-        const formattedSaida = formatDate(voo.saida.split(' ')[0], voo.saida.split(' ')[1]);
-        const formattedChegada = formatDate(voo.chegada.split(' ')[0], voo.chegada.split(' ')[1]);
+        if(voo.saida !== undefined) {
+            formattedSaida = formatDate(voo.saida.split(' ')[0], voo.saida.split(' ')[1]);
+        }
+        if(voo.chegada !== undefined) {
+            formattedChegada = formatDate(voo.chegada.split(' ')[0], voo.chegada.split(' ')[1]);
+        }
     
         const vooFormatted = {
             ...voo,
@@ -115,11 +121,10 @@ function EditarVoo(){
         })
         .then((data) => {
             if(data.status === 200){
-                setResp('Voo atualizado com sucesso!');
+                setResp('Voo cadastrado com sucesso!');
                 navigate('/voos')
-                
             } else {
-                setResp('Erro na atualização do voo!');
+                setResp('Erro no cadastrado do voo!');
             }
         })
         .catch(err => console.log("Erro no cadastro de voos: ---  " + err));
@@ -174,13 +179,34 @@ function EditarVoo(){
                 />
                 <Input 
                     type="number"
-                    name="vagas"
-                    text="Insira a quantidade de vagas do avião"
+                    name="vagasNormal"
+                    text="Insira a quantidade de vagas da classe econômica"
+                    placeholder="Insira a quantidade"
+                    onChange={handleOnChange}
+                />
+                <Input 
+                    type="number"
+                    name="vagasExecutiva"
+                    text="Insira a quantidade de vagas da classe executiva"
+                    placeholder="Insira a quantidade"
+                    onChange={handleOnChange}
+                />
+                <Input 
+                    type="number"
+                    name="preçoNormal"
+                    text="Insira o preço da passagem da classe econômica"
+                    placeholder="Insira a quantidade"
+                    onChange={handleOnChange}
+                />
+                <Input 
+                    type="number"
+                    name="preçoExecutiva"
+                    text="Insira o preço da passagem da classe executiva"
                     placeholder="Insira a quantidade"
                     onChange={handleOnChange}
                 />
                 <SubmitButton
-                    text='Atualizar voo'
+                    text='Editar voo'
                 />
             </form>
         </section>
