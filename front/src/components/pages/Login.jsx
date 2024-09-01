@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import Input from "../form/Input"
 import SubmitButton from "../form/SubmitButton"
 import { useNavigate } from "react-router-dom"
@@ -7,19 +7,10 @@ import useClienteContext from "../hook/useClienteContext"
 function Login(){
 
     const [cliente, setCliente] = useState(null)
-    const [clientes, setClientes] = useState(null)
+    // const [clientes, setClientes] = useState(null)
     const navigate = useNavigate()
     const {setClienteAtual} = useClienteContext()
-
-    useEffect(() => {
-        fetch('http://localhost:5000/clientes', {
-            method: "GET",
-            headers: {'Content-Type': 'application/json'}
-        })
-        .then((data) => data.json())
-        .then((data) => setClientes(data))
-        .catch((err) => console.log('Erro ao pegar clientes' + err))
-    }, [])
+    const [resposta, setResposta] = useState('')
 
     function handleOnChange(e){
         setCliente({...cliente, [e.target.name]: e.target.value})
@@ -27,28 +18,40 @@ function Login(){
 
     function submit(e){
         e.preventDefault()
-        clientes.map((cli) => {
-            if(cli.cpf === cliente.cpf && cli.password === cliente.password) {
-                setClienteAtual(cli)
+        fetch('http://localhost:8080/auth/login', {
+            method: "POST",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(cliente)
+        })
+        .then((data) => {
+            if(data.status == 200){
                 navigate('/home')
             }
+            if(data.status == 400){
+                setResposta('Email ou senha incorretos')
+            }
+            if(data.status == 403){
+                setResposta('Email incorreto')
+            }
         })
+        .catch((err) => console.log('Erro para achar cliente' + err))
     }
 
     return (
         <div>
             <form onSubmit={submit}>
+                <label>{resposta}</label>
                 <Input
-                    type='text'
-                    text='Insira o CPF'
-                    name='cpf'
+                    type='email'
+                    text='Insira o email'
+                    name='email'
                     placeholder='ex: 12345678912'
                     onChange={handleOnChange}
                 />
                 <Input
                     type='password'
                     text='Insira a sua senha'
-                    name='password'
+                    name='senha'
                     placeholder='Insira a senha'
                     onChange={handleOnChange}
                 />

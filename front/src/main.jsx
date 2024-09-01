@@ -16,6 +16,7 @@ import Reservas from './components/pages/Reservas.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { ReservaProvider } from './components/context/ReservaProvider.jsx'
 import { ClienteProvider } from './components/context/ClienteProvider.jsx'
+import EditarVoo from './components/pages/EditarVoo.jsx'
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: '/reservas',
         element: <Reservas />
+      },
+      {
+        path: '/editar-voo/:id',
+        element: <EditarVoo />
       }
     ]
   }

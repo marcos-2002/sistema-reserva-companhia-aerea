@@ -10,19 +10,24 @@ function Reservas(){
     let listaReserva = []
 
     useEffect(() => {
-        fetch('http://localhost:5000/reservas',{
+        fetch('http://localhost:8080/reserva',{
             method: "GET",
             headers: {'Content-Type': 'application/json'}
         })
-        .then((data) => data.json())
         .then((data) => {
-            data.map((dat) => {
-                if(dat.contaCliente === clienteAtual.cpf){
-                    listaReserva.push(dat)
-                }
-            })
-            setReservas(listaReserva)
+            console.log(data)
+            if(data.status===200){
+            }
         })
+        // Por enquanto está comentado
+        // .then((data) => {
+        //     data.map((dat) => {
+        //         if(dat.contaCliente === clienteAtual.cpf){
+        //             listaReserva.push(dat)
+        //         }
+        //     })
+        //     setReservas(listaReserva)
+        // })
     }, [])
     
     return(

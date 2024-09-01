@@ -2,15 +2,18 @@ import styles from './Cliente.module.css'
 import Input from "../form/Input"
 import SubmitButton from '../form/SubmitButton';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Cliente() {
-
+    
     const [cliente, setcliente] = useState({})
+    const navigate = useNavigate()
     
     function handleOnChange(e){
         setcliente({...cliente, [e.target.name]: e.target.value})
     }
-
+    
+    console.log(cliente)
     function submit(e){
         e.preventDefault()
 
@@ -19,7 +22,10 @@ function Cliente() {
             headers:{'Content-Type': 'application/json'},
             body: JSON.stringify(cliente)
         }).then((data)=>data.json())
-        .then((data)=>console.log("Dados de cliente cadastrado com sucesso \n" + data))
+        .then((data)=>{
+            console.log("Dados de cliente cadastrado com sucesso \n" + data)
+            navigate('/')
+        })
         .catch((err)=>console.log("Erro no cadastro de cliente ---- " + err))
         console.log(JSON.stringify(cliente))
     }
@@ -44,7 +50,7 @@ function Cliente() {
                 <Input
                     type='date'
                     name='dataNascimento'
-                    text='Insira o sea data de nascimento'
+                    text='Insira o sua data de nascimento'
                     onChange = {handleOnChange}
                 />
                 {/* <Input

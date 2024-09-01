@@ -1,10 +1,14 @@
 import { useState } from "react";
 import Input from "../form/Input";
 import SubmitButton from "../form/SubmitButton";
-import styles from './voo.module.css'
+import styles from '../voo/voo.module.css'
+import { useNavigate, useParams } from "react-router-dom";
 
-function Voo(){
+function EditarVoo(){
     
+    const { id } = useParams()
+    const navigate = useNavigate()
+
     const [voo, setVoo] = useState({})
     const [resp, setResp] = useState('')
     console.log(voo)
@@ -104,16 +108,18 @@ function Voo(){
             chegada: formattedChegada,
         };
     
-        fetch("http://localhost:8080/voos", {
-            method: "POST",
+        fetch(`http://localhost:8080/voos/${id}`, {
+            method: "PUT",
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify(vooFormatted)
         })
         .then((data) => {
             if(data.status === 200){
-                setResp('Voo cadastrado com sucesso!');
+                setResp('Voo atualizado com sucesso!');
+                navigate('/voos')
+                
             } else {
-                setResp('Erro no cadastrado do voo!');
+                setResp('Erro na atualização do voo!');
             }
         })
         .catch(err => console.log("Erro no cadastro de voos: ---  " + err));
@@ -174,11 +180,11 @@ function Voo(){
                     onChange={handleOnChange}
                 />
                 <SubmitButton
-                    text='Cadastrar voo'
+                    text='Atualizar voo'
                 />
             </form>
         </section>
     )
 }
 
-export default Voo;
+export default EditarVoo;

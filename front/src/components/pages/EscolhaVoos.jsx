@@ -12,7 +12,7 @@ function EscolhaVoos(){
     const navigate = useNavigate()
 
     useEffect(()=>{
-        fetch('http://localhost:5000/voos', {
+        fetch('http://localhost:8080/voos/search', {
             method: "GET",
             headers: {'Content-Type': 'application/json'}
         }).then((data)=>data.json())

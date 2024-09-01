@@ -33,12 +33,12 @@ function Home(){
                     placeholder='Insira o destino'
                     onChange={handleOnChange}
                 />
-                <Input
+                {/* <Input
                     type='date'
                     name='data-partida'
                     text='Digite data da ida'
                     onChange={handleOnChange}
-                />
+                /> */}
 
                 <Link to='/escolha-voo'>
                     <SubmitButton text='Continuar'/>
