@@ -22,7 +22,14 @@ function EscolhaVoos(){
     }, [])
 
     function handleSelect(id) {
-        setReserva({...reserva, ['id_voo']: id})
+        setReserva((reserva) => ({
+            ...reserva,
+            reservaRequestDTO: {
+              ...reserva.reservaRequestDTO,
+              ['voo']: id
+            },
+          }));
+
         navigate('/dados-passageiro')
     }
 
