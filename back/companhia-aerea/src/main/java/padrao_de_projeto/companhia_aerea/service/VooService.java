@@ -39,15 +39,15 @@ public class VooService {
 
     public Voo createVoo(VooRequestDTO data) {
         Voo newVoo = new Voo();
-
+        System.out.println(data);
         newVoo.setSaida(data.saida());
         newVoo.setChegada(data.chegada());
 
-        newVoo.setVagasNormal(data.vagasExecutiva());
+        newVoo.setVagasNormal(data.vagasNormal());
         newVoo.setVagasExecutiva(data.vagasExecutiva());
 
         newVoo.setPreçoExecutiva(data.preçoExecutiva());
-        newVoo.setPreçoNormal(data.preçoExecutiva());
+        newVoo.setPreçoNormal(data.preçoNormal());
 
         newVoo.setOrigem(data.origem());
         newVoo.setDestino(data.destino());
