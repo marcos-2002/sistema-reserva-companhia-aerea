@@ -2,6 +2,7 @@ package padrao_de_projeto.companhia_aerea.controllers;
 
 import org.apache.coyote.Response;
 import padrao_de_projeto.companhia_aerea.domain.Voo.Voo;
+import padrao_de_projeto.companhia_aerea.domain.Voo.VooOrigemDestinoDTo;
 import padrao_de_projeto.companhia_aerea.domain.Voo.VooRequestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +33,9 @@ public class VooController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<Voo>> procurarVoo(@RequestParam String origin, @RequestParam String destination) {
+    public ResponseEntity<List<Voo>> procurarVoo(@RequestBody VooOrigemDestinoDTo data) {
+        String origin = data.origem();
+        String destination = data.destino();
         List<Voo> voos = this.vooService.searchFlights(origin, destination);
         return ResponseEntity.ok(voos);
     }
