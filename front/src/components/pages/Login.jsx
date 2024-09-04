@@ -54,7 +54,7 @@ function Login(){
                     type='email'
                     text='Insira o email'
                     name='email'
-                    placeholder='ex: 12345678912'
+                    placeholder='ex: usuario@email.com'
                     onChange={handleOnChange}
                 />
                 <Input

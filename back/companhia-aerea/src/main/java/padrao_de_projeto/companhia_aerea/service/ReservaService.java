@@ -30,7 +30,7 @@ public class ReservaService {
         Voo voo = vooService.getVooById(body.voo());
         String tipo = body.tipo().toLowerCase();
 
-        if (tipo.equals("normal")) {
+        if (tipo.equals("economica")) {
             if(voo.getVagasNormal() <= 0) {
                 throw new RuntimeException("Não há vagas disponíveis para este voo.");
             } else {

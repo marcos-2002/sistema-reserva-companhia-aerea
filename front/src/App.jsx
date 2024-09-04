@@ -8,15 +8,16 @@ function App() {
   
 
   return (
-    <>
+    <div id="main">
         <NavBar/>
         <div>
         <Container>
           <Outlet />
         </Container>
         </div>
+        <div id="content"></div>
         <Footer/>
-    </>
+    </div>
   )
 }
 

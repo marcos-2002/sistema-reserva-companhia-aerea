@@ -3,7 +3,7 @@ import styles from './Footer.module.css'
 function Footer() {
     return (
         <footer>
-            <p>Projeto criado pelo Cliente Servidor</p>
+            <p>Grupo 6</p>
         </footer>
     )
 }

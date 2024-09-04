@@ -10,9 +10,21 @@
     --cor4: #2C2E33;
     --cor5: #071C56;
     --cor6: #071c5662;
+    
 }
 
 body {
     background-color: white;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+button.btn{
+    padding: 5px;
+    margin: 5px;
+}
+
+div#content{
+}
+
+#main{
 }

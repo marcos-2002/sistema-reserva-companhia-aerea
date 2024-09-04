@@ -12,6 +12,7 @@ import Voo from './components/voo/voo';
 import Voos from './components/pages/Voos';
 import Cliente from './components/cliente/Cliente';
 import Reservas from './components/pages/Reservas.jsx'
+import PesquisarVoos from './components/pages/PesquisarVoos.jsx'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { ReservaProvider } from './components/context/ReservaProvider.jsx'
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path:'/home',
         element: <Home />
+      },
+      {
+        path:'/pesquisar-voos',
+        element: <PesquisarVoos />
       },
       {
         path: '/escolha-voo',
