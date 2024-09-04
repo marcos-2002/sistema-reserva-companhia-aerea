@@ -5,29 +5,25 @@ import ReservaCard from '../layout/ReservaCard'
 
 function Reservas(){
 
-    const {clienteAtual} = useClienteContext()
     const [reservas, setReservas] = useState(null)
-    let listaReserva = []
 
     useEffect(() => {
         fetch('http://localhost:8080/reserva',{
             method: "GET",
-            headers: {'Content-Type': 'application/json'}
-        })
-        .then((data) => {
-            console.log(data)
-            if(data.status===200){
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         })
-        // Por enquanto está comentado
-        // .then((data) => {
-        //     data.map((dat) => {
-        //         if(dat.contaCliente === clienteAtual.cpf){
-        //             listaReserva.push(dat)
-        //         }
-        //     })
-        //     setReservas(listaReserva)
-        // })
+        .then((data) => {
+            if(data.status===200){
+                return data.json()
+            }
+        })
+        .then((data) => {
+            setReservas(data)
+            console.log(data)
+        })
     }, [])
     
     return(
@@ -35,13 +31,17 @@ function Reservas(){
             {reservas && reservas.length>0 ? reservas.map((reserva) => (
                 <ReservaCard 
                     id={reserva.id}
+                    origem={reserva.voo.origem}
+                    destino={reserva.voo.destino}
                     bagagem_extra={reserva.bagagem_extra === true ? 'Sim' : 'Não'}
                     preco={reserva.preco}
                     id_voo={reserva.id_voo}
-                    cpf={reserva.cpf}
-                    nome={reserva.nome}
-                    idade={reserva.idade}
+                    cpf={reserva.cliente.cpf}
+                    nome={reserva.cliente.nome}
+                    idade={reserva.cliente.dataNascimento}
                     vaga={reserva.vaga}
+                    data_saida={reserva.voo.saida}
+                    data_chegada={reserva.voo.chegada}
                     key={reserva.id}
                 />
             )): (
