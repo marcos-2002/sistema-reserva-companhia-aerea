@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-//import Input from "../form/Input";
+import Input from "../form/Input";
 import SubmitButton from "../form/SubmitButton";
 import useVooContext from '../hook/useVooContext';
 
