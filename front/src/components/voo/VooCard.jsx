@@ -1,7 +1,7 @@
 import styles from './VooCard.module.css'
 import { useNavigate } from 'react-router-dom'
 
-function VooCard({id, origem, destino, data_partida, data_chegada, handleRemove}){
+function VooCard({id, origem, destino, data_partida, data_chegada, precoNormal, precoExecutiva, handleRemove}){
 
     const navigate = useNavigate()
 
@@ -20,11 +20,9 @@ function VooCard({id, origem, destino, data_partida, data_chegada, handleRemove}
             <h4>{origem} - {destino}</h4>
             <p><span>Data da partida:</span> {data_partida.split(' ')[0]}</p>
             <p><span>Data da chegada:</span> {data_chegada.split(' ')[0]}</p>
+            <p><span>Preço Econômica:</span> R$ {precoNormal.toFixed(2)}</p>
+            <p><span>Preço Executiva:</span> R$ {precoExecutiva.toFixed(2)}</p>
             <div>
-                {/* <Link to={`/voo/${id}`}>
-                    <BsPencil/> Editar
-                </Link>
-                */}
                 <button onClick={remove}>
                     Excluir
                 </button>

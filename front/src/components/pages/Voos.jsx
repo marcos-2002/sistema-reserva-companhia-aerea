@@ -39,6 +39,8 @@ function Voos() {
                     destino={voo.destino}
                     data_partida={voo.saida} 
                     data_chegada={voo.chegada}
+                    precoNormal={voo.preçoNormal}
+                    precoExecutiva={voo.preçoExecutiva}
                     id={voo.id}
                     handleRemove={handleRemove}
                     key={voo.id}
