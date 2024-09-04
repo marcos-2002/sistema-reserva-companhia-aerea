@@ -11,7 +11,7 @@ public class VooPorHorarioIterator implements IVooIterator {
 
     public VooPorHorarioIterator(List<Voo> voos) {
         this.voos = new ArrayList<>(voos);
-        this.voos.sort(Comparator.comparing(Voo::getSaida));  // Ordena pela hora de saída
+        this.voos.sort(Comparator.comparing(Voo::getSaida));  // ordena pela hora de saida
     }
 
     @Override

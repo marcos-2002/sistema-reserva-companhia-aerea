@@ -40,8 +40,8 @@ function EscolhaVoos() {
             <h1>Escolha o seu Voo</h1>
 
             <div>
-                <button onClick={() => setOrderBy("preco")}>Ordenar por Preço</button>
-                <button onClick={() => setOrderBy("horario")}>Ordenar por Horário</button>
+                <button class="btn" onClick={() => setOrderBy("preco")}>Ordenar por Preço</button>
+                <button class="btn" onClick={() => setOrderBy("horario")}>Ordenar por Horário</button>
                 
             </div>
 

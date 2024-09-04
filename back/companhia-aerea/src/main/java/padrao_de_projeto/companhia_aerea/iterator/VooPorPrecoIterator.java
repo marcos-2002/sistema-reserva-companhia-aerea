@@ -12,7 +12,7 @@ public class VooPorPrecoIterator implements IVooIterator {
 
     public VooPorPrecoIterator(List<Voo> voos) {
         this.voos = new ArrayList<>(voos);
-        this.voos.sort(Comparator.comparingDouble(Voo::getPreçoNormal));  // Ordena pelo preço normal
+        this.voos.sort(Comparator.comparingDouble(Voo::getPreçoNormal)); 
     }
 
     @Override

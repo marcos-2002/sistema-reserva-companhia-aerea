@@ -4,7 +4,7 @@ import styles from "./navbar.module.css"
 function NavBar(){
     return (
         <header>
-            <Link to='/'><h1>Empresa de aviação</h1></Link>
+            <Link to='/'><h1>Companhia Aérea</h1></Link>
             <nav>
                 <Link to={`/cadastro-voo`}>Cadastro de Voos</Link>
                 <Link to={`/voos`}>Voos</Link>
