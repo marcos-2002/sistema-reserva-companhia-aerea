@@ -10,6 +10,7 @@ function NavBar(){
                 <Link to={`/voos`}>Voos</Link>
                 <Link to={`/reservas`}>Reservas</Link>
                 <Link to={'/cadastro-cliente'}>Cadastro de Cliente</Link>
+                <Link to={'/pesquisar-voos'}>Pesquisar voos</Link>
             </nav>
         </header>      
     )

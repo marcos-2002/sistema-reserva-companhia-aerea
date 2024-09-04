@@ -30,8 +30,8 @@ function Voos() {
     return (
         <div>
             <div>
-                <button onClick={() => setOrderBy("preco")}>Ordenar por Preço</button>
-                <button onClick={() => setOrderBy("horario")}>Ordenar por Horário</button>
+                <button className="btn" onClick={() => setOrderBy("preco")}>Ordenar por Preço</button>
+                <button className="btn" onClick={() => setOrderBy("horario")}>Ordenar por Horário</button>
             </div>
             {voos.length > 0 && voos.map((voo) => (
                 <VooCard

@@ -50,9 +50,22 @@ public class VooController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<Voo>> procurarVoo(@RequestParam String origin, @RequestParam String destination) {
+    public ResponseEntity<List<Voo>> procurarVoo(@RequestParam String origin, @RequestParam String destination, @RequestParam(required = false) String orderBy) {
         List<Voo> voos = this.vooService.searchFlights(origin, destination);
-        return ResponseEntity.ok(voos);
+
+        IVooIterator iterator;
+        if ("preco".equalsIgnoreCase(orderBy)) {
+            iterator = new VooPorPrecoIterator(voos);
+        } else {
+            iterator = new VooPorHorarioIterator(voos);
+        }
+
+        List<Voo> sortedVoos = new ArrayList<>();
+        while (!iterator.done()) {
+            sortedVoos.add(iterator.next());
+        }
+
+        return ResponseEntity.ok().body(sortedVoos);
     }
 
     @DeleteMapping("/{id}")
