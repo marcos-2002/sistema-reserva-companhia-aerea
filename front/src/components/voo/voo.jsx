@@ -1,130 +1,62 @@
 import { useState } from "react";
 import Input from "../form/Input";
 import SubmitButton from "../form/SubmitButton";
-import styles from './voo.module.css'
+import styles from './voo.module.css';
 
-function Voo(){
-    
-    const [voo, setVoo] = useState({})
-    const [resp, setResp] = useState('')
-    console.log(voo)
+function Voo() {
+    const [voo, setVoo] = useState({});
+    const [resp, setResp] = useState('');
 
-    function formatDate(date, time) {
+    const handleOnChange = (e) => {
+        const { name, value } = e.target;
+        setVoo((prevVoo) => ({
+            ...prevVoo,
+            [name]: value,
+        }));
+    };
+
+    const formatDateTime = (date, time) => {
         const [year, month, day] = date.split('-');
         return `${day}/${month}/${year} ${time}`;
-    }
+    };
 
-    function handleOnChange(e) {
-        if(e.target.name === 'horario_saida') {
-            let saida = voo.saida
-            if(saida === undefined) {
-                setVoo({...voo, ['saida']: ' '+e.target.value})
-            }
-            else if(saida !== undefined && !saida.includes(' ')) {
-                setVoo({...voo, ['saida']:  saida + ' ' + e.target.value})
-            }
-            else if(saida !== undefined && saida.includes(' ')) {
-                if(saida.includes('-')){
-                    let verif = saida.split(' ')
-                    setVoo({...voo, ['saida']:  verif[0] + ' ' + e.target.value})
-                }
-                else {
-                    setVoo({...voo, ['saida']:  ' ' + e.target.value})
-                }
-            }
-        }
-        else if(e.target.name === 'saida') {
-            let saida = voo.saida
-            if(saida === undefined) {
-                setVoo({...voo, ['saida']: e.target.value})
-            }
-            else if(saida !== undefined && saida.includes(' ')) {
-                if(saida.includes('-')) {
-                    let verif = saida.split(' ')
-                    setVoo({...voo, ['saida']:  e.target.value + ' ' + verif[1]})
-                } else {
-                    setVoo({...voo, ['saida']:  e.target.value + saida})
-                }
-            }
-        }
-        else if(e.target.name === 'horario_chegada') {
-            let chegada = voo.chegada
-            if(chegada === undefined) {
-                setVoo({...voo, ['chegada']: ' '+e.target.value})
-            }
-            else if(chegada !== undefined && !chegada.includes(' ')) {
-                setVoo({...voo, ['chegada']:  chegada + ' ' + e.target.value})
-            }
-            else if(chegada !== undefined && chegada.includes(' ')) {
-                if(chegada.includes('-')){
-                    let verif = chegada.split(' ')
-                    setVoo({...voo, ['chegada']:  verif[0] + ' ' + e.target.value})
-                }
-                else {
-                    setVoo({...voo, ['chegada']:  ' ' + e.target.value})
-                }
-            }
-        }
-        else if(e.target.name === 'chegada') {
-            let chegada = voo.chegada
-            if(chegada === undefined) {
-                setVoo({...voo, ['chegada']: e.target.value})
-            }
-            else if(chegada !== undefined && chegada.includes(' ')) {
-                if(chegada.includes('-')) {
-                    let verif = chegada.split(' ')
-                    setVoo({...voo, ['chegada']:  e.target.value + ' ' + verif[1]})
-                } else {
-                    setVoo({...voo, ['chegada']:  e.target.value + chegada})
-                }
-            }
-        }
-        else if (e.target.name !== 'saida' && e.target.name !== 'chegada' && e.target.name !== 'horario_saida' && e.target.name !== 'horario_chegada') {
-            if(e.target.name === 'vagas'){
-                let vagas = e.target.value
-                vagas = Number(vagas)
-                setVoo({...voo, [e.target.name]: vagas})
-            } else {
-                setVoo({...voo, [e.target.name]: e.target.value})
-            }
-        }
-        console.log(voo)
-    }
-
-
-    function submit(e) {
+    const submit = (e) => {
         e.preventDefault();
-    
+
+        var token = localStorage.getItem('token');
+
         // Formatando as datas e horários no formato esperado pelo backend
-        const formattedSaida = formatDate(voo.saida.split(' ')[0], voo.saida.split(' ')[1]);
-        const formattedChegada = formatDate(voo.chegada.split(' ')[0], voo.chegada.split(' ')[1]);
-    
+        const formattedSaida = formatDateTime(voo.saida, voo.horario_saida);
+        const formattedChegada = formatDateTime(voo.chegada, voo.horario_chegada);
+
         const vooFormatted = {
             ...voo,
             saida: formattedSaida,
             chegada: formattedChegada,
         };
-    
+
         fetch("http://localhost:8080/voos", {
             method: "POST",
-            headers: { 'Content-type': 'application/json' },
+            headers: { 'Content-type': 'application/json',
+                'Authorization': `Bearer ${token}`},
+            
             body: JSON.stringify(vooFormatted)
         })
         .then((data) => {
-            if(data.status === 200){
+            if (data.ok) {
                 setResp('Voo cadastrado com sucesso!');
             } else {
-                setResp('Erro no cadastrado do voo!');
+                setResp('Erro no cadastro do voo!');
             }
         })
-        .catch(err => console.log("Erro no cadastro de voos: ---  " + err));
-    }
+        .catch(err => {
+            console.log("Erro no cadastro de voos: ---  " + err);
+            setResp('Erro no cadastro do voo!');
+        });
+    };
 
     return (
         <section className={styles.img}>
-            {/* <h1>Cadastre seus voos</h1>
-             */}
-
             <form onSubmit={submit}>
                 <label>{resp}</label>
                 <Input 
@@ -144,8 +76,14 @@ function Voo(){
                 <Input 
                     type="date"
                     name="saida"
-                    text="Insira a data de saida do voo"
+                    text="Insira a data de saída do voo"
                     placeholder="Insira a data"
+                    onChange={handleOnChange}
+                />
+                <Input 
+                    type="time"
+                    name="horario_saida"
+                    text="Insira o horário de saída do voo"
                     onChange={handleOnChange}
                 />
                 <Input 
@@ -157,19 +95,13 @@ function Voo(){
                 />
                 <Input 
                     type="time"
-                    name="horario_saida"
-                    text="Insira o horario de inicio do voo"
-                    onChange={handleOnChange}
-                />
-                <Input 
-                    type="time"
                     name="horario_chegada"
-                    text="Insira o horario de chegada do voo"
+                    text="Insira o horário de chegada do voo"
                     onChange={handleOnChange}
                 />
                 <Input 
                     type="number"
-                    name="vagasNormal"
+                    name="vagas"
                     text="Insira a quantidade de vagas da classe econômica"
                     placeholder="Insira a quantidade"
                     onChange={handleOnChange}
@@ -185,22 +117,20 @@ function Voo(){
                     type="number"
                     name="preçoNormal"
                     text="Insira o preço da passagem da classe econômica"
-                    placeholder="Insira a quantidade"
+                    placeholder="Insira o preço"
                     onChange={handleOnChange}
                 />
                 <Input 
                     type="number"
                     name="preçoExecutiva"
                     text="Insira o preço da passagem da classe executiva"
-                    placeholder="Insira a quantidade"
+                    placeholder="Insira o preço"
                     onChange={handleOnChange}
                 />
-                <SubmitButton
-                    text='Cadastrar voo'
-                />
+                <SubmitButton text='Cadastrar voo' />
             </form>
         </section>
-    )
+    );
 }
 
 export default Voo;
