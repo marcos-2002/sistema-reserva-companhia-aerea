@@ -19,7 +19,8 @@ function Voos() {
 
     function handleRemove(id) {
         fetch(`http://localhost:8080/voos/${id}`, {
-            method:"DELETE"
+            method:"DELETE",
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
         })
         .then(() => {
             setVoos(voos.filter(voo => voo.id !== id));

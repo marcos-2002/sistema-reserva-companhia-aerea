@@ -101,7 +101,7 @@ function Voo() {
                 />
                 <Input 
                     type="number"
-                    name="vagas"
+                    name="vagasNormal"
                     text="Insira a quantidade de vagas da classe econômica"
                     placeholder="Insira a quantidade"
                     onChange={handleOnChange}

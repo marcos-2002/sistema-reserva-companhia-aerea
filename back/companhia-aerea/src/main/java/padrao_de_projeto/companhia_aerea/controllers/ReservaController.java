@@ -44,10 +44,10 @@ public class ReservaController {
 
     @PostMapping("/pagamento")
     public ResponseEntity<?> criarReservaComPagamento (@RequestBody ReservaPagamentoDTO body, @AuthenticationPrincipal Cliente cliente) {
-
         ReservaRequestDTO reservaRequestDTO = body.reservaRequestDTO();
         PagamentoRequestWrapper pagamentoRequestWrapper = body.pagamentoRequestWrapper();
         try {
+            
             Pagamento pg = reservaFacade.criarReservaComPagamento(reservaRequestDTO, cliente, pagamentoRequestWrapper);
             return ResponseEntity.ok(pg);
         }catch (RuntimeException e) {

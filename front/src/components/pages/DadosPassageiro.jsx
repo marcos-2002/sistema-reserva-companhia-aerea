@@ -21,7 +21,13 @@ function DadosPassageiro() {
             .then(response => response.json())
             .then(data => {
                 setVoo(data);
-                setReserva(prevReserva => ({ ...prevReserva, reservaRequestDTO: { ...prevReserva.reservaRequestDTO, contaCliente: clienteAtual?.cpf } }));
+                setReserva(prevReserva => ({ 
+                    ...prevReserva, 
+                    reservaRequestDTO: { 
+                        ...prevReserva.reservaRequestDTO, 
+                        contaCliente: clienteAtual?.cpf 
+                    } 
+                }));
             })
             .catch(err => console.log('Erro ao carregar voo:', err));
         }
@@ -82,6 +88,12 @@ function DadosPassageiro() {
                 response.text().then(errorText => console.log('Erro:', response.status, errorText));
             } else {
                 return response.json();
+            }
+        })
+        .then(data => {
+            if (data) {
+                console.log("asoidghasdih")
+                navigate('/reservas'); // Navegar para a página de confirmação após sucesso
             }
         })
         .catch(err => console.log('Erro ao enviar a reserva:', err));
@@ -156,4 +168,3 @@ function DadosPassageiro() {
 }
 
 export default DadosPassageiro;
-

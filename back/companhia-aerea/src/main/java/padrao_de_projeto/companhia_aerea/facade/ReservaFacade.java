@@ -24,8 +24,8 @@ public class ReservaFacade {
 
     @Transactional
     public Pagamento criarReservaComPagamento(ReservaRequestDTO reservaDTO, Cliente cliente, PagamentoRequestWrapper requestWrapper) {
-
         // 1. Criar a reserva
+        System.out.println("\n\nBBBB1\n\n");
         Reserva reserva = reservaService.createReservation(reservaDTO, cliente);
 
         // 2. Processar o pagamento
