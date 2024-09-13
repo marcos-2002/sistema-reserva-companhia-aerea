@@ -21,7 +21,7 @@ function ReservaCard({id, origem, destino, bagagem_extra, preco, cpf, nome, idad
             <p><span>CPF:</span> {cpf}</p>
             <p><span>Data de nascimento:</span> {idade}</p>
             <p><span>Bagagem extra:</span> {bagagem_extra}</p>
-            <p><span>Preço:</span> R${preco}</p>
+            <p><span>Preço:</span> R${preco.toFixed(2)}</p>
         </div>
     )
 }

@@ -41,7 +41,7 @@ function DadosPassageiro() {
                 ...prevReserva,
                 reservaRequestDTO: {
                     ...prevReserva.reservaRequestDTO,
-                    bagagemExtra: !prevReserva.reservaRequestDTO.bagagemExtra
+                    bagagemExtra: prevReserva.reservaRequestDTO.bagagemExtra
                 }
             }));
         } else if (type === 'radio') {

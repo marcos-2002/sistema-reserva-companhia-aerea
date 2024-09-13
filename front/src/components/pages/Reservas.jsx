@@ -33,7 +33,7 @@ function Reservas(){
                     id={reserva.id}
                     origem={reserva.voo.origem}
                     destino={reserva.voo.destino}
-                    bagagem_extra={reserva.bagagem_extra === true ? 'Sim' : 'Não'}
+                    bagagem_extra={reserva.bagagemExtra === true ? 'Sim' : 'Não'}
                     preco={reserva.preco}
                     id_voo={reserva.id_voo}
                     cpf={reserva.cliente.cpf}
